@@ -1,0 +1,44 @@
+Stores
+	ID
+	Name
+
+Orders
+	ID
+	StoreID
+	CustomerID
+	TotalPrice
+	TimePlaced
+
+Order_Pizzas
+	OrderID
+	PizzaID
+
+Pizzas
+	ID
+	CrustID
+	SizeID
+	Price
+
+Pizza_Toppings
+	PizzaID
+	ToppingID
+
+Toppings
+	ID
+	Name
+	Price
+	Amount
+
+Crusts
+	ID
+	Name
+	Price
+
+Sizes
+	ID
+	Name
+	Price
+
+Customers
+	ID
+	Name

@@ -7,19 +7,23 @@ namespace PizzaBox.Domain.Models
   /// </summary>
   public class VeganPizza : APizza
   {
+    public VeganPizza() : base("Vegan Pizza")
+    {
+    }
+
     public override void AddCrust()
     {
-      Crust = null;
+      Crust = new CheeseStuffedCrust();
     }
 
     public override void AddSize()
     {
-      Size = null;
+      Size = new MediumSize();
     }
 
     public override void AddToppings()
     {
-      Toppings.AddRange(new Topping[] { new Topping(), new Topping() });
+      Toppings.AddRange(new Topping[] { new MushroomTopping(), new OnionTopping() });
     }
   }
 }

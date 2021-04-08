@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
@@ -6,8 +5,27 @@ using PizzaBox.Domain.Abstracts;
 
 namespace PizzaBox.Storing.Repositories
 {
-  public class FileRepository
+    public class FileRepository
   {
+
+    public bool WriteToFile(List<APizza> pizzas)
+    {
+        try
+        {
+            var path = @"pizza.xml";
+            var writer = new StreamWriter(path);
+            var xml = new XmlSerializer(typeof(List<APizza>));
+
+            xml.Serialize(writer, pizzas);
+
+            return true;
+        }
+        catch 
+        {
+            return false;
+        }
+    }
+
     public bool WriteToFile(List<AStore> stores)
     {
       try

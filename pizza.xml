@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfAPizza xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <APizza xsi:type="MeatPizza">
+    <Crust xsi:type="TraditionalCrust">
+      <Name>Traditional Crust</Name>
+    </Crust>
+    <Size xsi:type="MediumSize">
+      <Name>Medium Size</Name>
+    </Size>
+    <Toppings>
+      <Topping xsi:type="PepperoniTopping">
+        <Name>Pepperoni</Name>
+      </Topping>
+      <Topping xsi:type="BaconTopping">
+        <Name>Bacon</Name>
+      </Topping>
+    </Toppings>
+  </APizza>
+  <APizza xsi:type="VeganPizza">
+    <Crust xsi:type="CheeseStuffedCrust">
+      <Name>Cheese Stuffed Crust</Name>
+    </Crust>
+    <Size xsi:type="MediumSize">
+      <Name>Medium Size</Name>
+    </Size>
+    <Toppings>
+      <Topping xsi:type="MushroomTopping">
+        <Name>Mushroom</Name>
+      </Topping>
+      <Topping xsi:type="OnionTopping">
+        <Name>Onion</Name>
+      </Topping>
+    </Toppings>
+  </APizza>
+</ArrayOfAPizza>

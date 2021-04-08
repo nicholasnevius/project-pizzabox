@@ -1,11 +1,11 @@
 namespace PizzaBox.Domain.Abstracts
 {
-  /// <summary>
-  /// 
-  /// </summary>
-  public class AComponent
+    /// <summary>
+    /// 
+    /// </summary>
+    ///
+    public abstract class AComponent : ASellable
   {
     public string Name { get; set; }
-    public decimal Price { get; set; }
   }
 }

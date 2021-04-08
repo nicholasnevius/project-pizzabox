@@ -1,12 +1,19 @@
 using PizzaBox.Domain.Abstracts;
+using System.Xml.Serialization;
 
 namespace PizzaBox.Domain.Models
 {
   /// <summary>
   /// 
   /// </summary>
-  public class Crust : AComponent
-  {
-
-  }
+    [XmlInclude(typeof(CheeseStuffedCrust))]
+    [XmlInclude(typeof(DeepDishCrust))]
+    [XmlInclude(typeof(TraditionalCrust))]
+    public abstract class Crust : AComponent
+    {
+        public override string ToString()
+        {
+            return $"{Name}";
+        }
+    }
 }

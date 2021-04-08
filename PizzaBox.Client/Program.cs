@@ -1,18 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
 using PizzaBox.Domain.Abstracts;
-using PizzaBox.Domain.Models;
 using PizzaBox.Client.Singletons;
+
+using PizzaBox.Client.Contexts;
+using PizzaBox.Client.States;
 
 namespace PizzaBox.Client
 {
-  /// <summary>
-  /// 
-  /// </summary>
-  internal class Program
+    /// <summary>
+    /// 
+    /// </summary>
+    internal class Program
   {
     private static readonly StoreSingleton _storeSingleton = StoreSingleton.Instance;
     private static readonly PizzaSingleton _pizzaSingleton = PizzaSingleton.Instance;
+    private static readonly StateSingleton _stateSingleton = StateSingleton.Instance;
+
 
     /// <summary>
     /// 
@@ -28,8 +31,15 @@ namespace PizzaBox.Client
     /// </summary>
     private static void Run()
     {
-      var order = new Order();
-
+      //.new CreateCustomerState()
+      Console.WriteLine("Welcome to PizzaBox");
+      Context context = new Context(_stateSingleton.GetState<InitialState>());
+      while (context.State != _stateSingleton.GetState<ExitState>())
+      {
+        context.Request();
+      }
+      
+      /*
       Console.WriteLine("Welcome to PizzaBox");
       DisplayStoreMenu();
 
@@ -38,6 +48,7 @@ namespace PizzaBox.Client
       order.Pizza = SelectPizza();
 
       order.Save();
+      */
     }
 
     /// <summary>
@@ -46,6 +57,7 @@ namespace PizzaBox.Client
     private static void DisplayOrder(APizza pizza)
     {
       Console.WriteLine($"Your order is: {pizza}");
+      Console.WriteLine($"The price is: {pizza.Price}");
     }
 
     /// <summary>
@@ -80,7 +92,8 @@ namespace PizzaBox.Client
     /// <returns></returns>
     private static APizza SelectPizza()
     {
-      var input = int.Parse(Console.ReadLine());
+      //var input = int.Parse(Console.ReadLine());
+      var input = 1;
       var pizza = _pizzaSingleton.Pizzas[input - 1];
 
       DisplayOrder(pizza);

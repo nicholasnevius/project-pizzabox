@@ -1,8 +1,5 @@
 using System.Collections.Generic;
-using System.IO;
-using System.Xml.Serialization;
 using PizzaBox.Domain.Abstracts;
-using PizzaBox.Domain.Models;
 using PizzaBox.Storing.Repositories;
 
 namespace PizzaBox.Client.Singletons
