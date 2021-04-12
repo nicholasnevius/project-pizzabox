@@ -11,72 +11,74 @@ namespace PizzaBox.Domain.Abstracts
     [XmlInclude(typeof(MeatPizza))]
     [XmlInclude(typeof(VeganPizza))]
     public abstract class APizza : ASellable
-  {
-    public Crust Crust { get; set; }
-    public Size Size { get; set; }
-
-    // This stupid crap needs to be here so I it doesn't
-    // serialize the Toppings then add them in using
-    // the default constructors ending up with duplicates
-    // TODO: find a better way to handle this
-    [XmlIgnore]
-    public List<Topping> Toppings { get; set; }
-    public string Name { get; set; }
-    private decimal price = 0.0m;
-    public override decimal Price
     {
-        get
+        public Crust Crust { get; set; }
+        public Size Size { get; set; }
+
+        // This stupid crap needs to be here so I it doesn't
+        // serialize the Toppings then add them in using
+        // the default constructors ending up with duplicates
+        // TODO: find a better way to handle this
+        [XmlIgnore]
+        public List<Topping> Toppings { get; set; }
+        public string Name { get; set; }
+        private decimal price = 0.0m;
+        public override decimal Price
         {
-            if (price != 0.0m)
+            get
             {
+                if (price != 0.0m)
+                {
+                    return price;
+                }
+                price += Crust.Price;
+                price += Size.Price;
+                foreach (Topping topping in Toppings)
+                {
+                    price += topping.Price;
+                }
                 return price;
             }
-            price += Crust.Price;
-            price += Size.Price;
-            foreach(Topping topping in Toppings)
+            set
             {
-                price += topping.Price;
+                price = value;
             }
-            return price;
         }
-        set
+
+        public override string ToString()
         {
-            price = value;
-        }
-    }
+            if (this is CustomPizza)
+            {
+                string output = $"Crust: {Crust}" + Environment.NewLine + $"Size: {Size}" + Environment.NewLine + "Toppings: ";
+                Toppings.ForEach(topping => output += topping.ToString() + ", ");
+                output = output.Substring(0, output.LastIndexOf(", "));
+                return output;
+            }
 
-    public override string ToString()
-    {
-        if (this is CustomPizza)
+            return Name;
+        }
+
+        protected APizza(String name)
         {
-            string output = $"Crust: {Crust}" + Environment.NewLine + $"Size: {Size}" + Environment.NewLine + "Toppings: ";
-            Toppings.ForEach(topping => output += topping.ToString() + ", ");
-            output = output.Substring(0, output.LastIndexOf(", "));
-            return output;
+            Name = name;
+            Factory();
         }
 
-        return Name;
+        private void Factory()
+        {
+            Toppings = new List<Topping>();
+
+            AddCrust();
+            AddSize();
+            AddToppings();
+        }
+
+        public abstract void AddCrust();
+
+        public abstract void AddSize();
+
+        public abstract void AddToppings();
+
+        public abstract APizza Clone();
     }
-
-    protected APizza(String name)
-    {
-        Name = name;
-        Factory();
-    }
-
-    private void Factory()
-    {
-      Toppings = new List<Topping>();
-
-      AddCrust();
-      AddSize();
-      AddToppings();
-    }
-
-    public abstract void AddCrust();
-
-    public abstract void AddSize();
-
-    public abstract void AddToppings();
-  }
 }

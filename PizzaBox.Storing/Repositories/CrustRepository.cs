@@ -27,7 +27,7 @@ namespace PizzaBox.Storing.Repositories
         public List<Domain.Models.Crust> GetList()
         {
             List<Domain.Models.Crust> crusts = new List<Domain.Models.Crust>();
-            context.Crusts.ToList().ForEach(crust => crusts.Add(mapper.Map(crust)));
+            context.Crusts.AsEnumerable().GroupBy(c => c.CrustType).Select(c => c.First()).ToList().ForEach(crust => crusts.Add(mapper.Map(crust)));
             return crusts;
         }
 

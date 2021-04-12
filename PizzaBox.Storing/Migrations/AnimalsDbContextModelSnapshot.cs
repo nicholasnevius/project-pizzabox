@@ -29,7 +29,7 @@ namespace PizzaBox.Storing.Migrations
                     b.Property<int>("CrustType")
                         .HasColumnType("int");
 
-                    b.Property<decimal?>("Price")
+                    b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("ID");
@@ -97,7 +97,7 @@ namespace PizzaBox.Storing.Migrations
                     b.Property<int>("PizzaType")
                         .HasColumnType("int");
 
-                    b.Property<decimal?>("Price")
+                    b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int?>("SizeID")
@@ -121,7 +121,7 @@ namespace PizzaBox.Storing.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<decimal?>("Price")
+                    b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("SizeType")
@@ -161,7 +161,7 @@ namespace PizzaBox.Storing.Migrations
                     b.Property<int?>("PizzaID")
                         .HasColumnType("int");
 
-                    b.Property<decimal?>("Price")
+                    b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("ToppingType")

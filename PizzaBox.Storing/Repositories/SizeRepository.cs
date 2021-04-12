@@ -25,7 +25,7 @@ namespace PizzaBox.Storing.Repositories
         public List<Domain.Models.Size> GetList()
         {
             List<Domain.Models.Size> sizes = new List<Domain.Models.Size>();
-            context.Sizes.ToList().ForEach(size => sizes.Add(mapper.Map(size)));
+            context.Sizes.AsEnumerable().GroupBy(s => s.SizeType).Select(s => s.First()).ToList().ForEach(size => sizes.Add(mapper.Map(size)));
             return sizes;
         }
 
@@ -50,7 +50,7 @@ namespace PizzaBox.Storing.Repositories
                 size.Price = updatedSize.Price;
                 size.SizeType = updatedSize.SizeType;
                 context.SaveChanges();
-            }        
+            }
         }
     }
 }

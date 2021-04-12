@@ -20,16 +20,11 @@ namespace PizzaBox.Storing.Mappers
                     crust = new TraditionalCrust();
                     break;
                 case Entities.CRUST_TYPE.Unknown:
-                    // TODO: add logging to these last 2
+                // TODO: add logging to these last 2
                 default:
                     throw new ArgumentException("CrustMapper ran into an unknown Crust Type when mapping from DB Model to Domain Model");
             }
-
-            if (model.Price.HasValue)
-            {
-                crust.Price = model.Price.Value;
-            }
-
+            crust.Price = model.Price;
             return crust;
         }
 

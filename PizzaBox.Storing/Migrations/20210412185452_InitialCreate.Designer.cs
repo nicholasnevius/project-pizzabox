@@ -10,8 +10,8 @@ using PizzaBox.Storing.Entities;
 namespace PizzaBox.Storing.Migrations
 {
     [DbContext(typeof(AnimalsDbContext))]
-    [Migration("20210412062405_IntialCreate")]
-    partial class IntialCreate
+    [Migration("20210412185452_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -31,7 +31,7 @@ namespace PizzaBox.Storing.Migrations
                     b.Property<int>("CrustType")
                         .HasColumnType("int");
 
-                    b.Property<decimal?>("Price")
+                    b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("ID");
@@ -99,7 +99,7 @@ namespace PizzaBox.Storing.Migrations
                     b.Property<int>("PizzaType")
                         .HasColumnType("int");
 
-                    b.Property<decimal?>("Price")
+                    b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int?>("SizeID")
@@ -123,7 +123,7 @@ namespace PizzaBox.Storing.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<decimal?>("Price")
+                    b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("SizeType")
@@ -163,7 +163,7 @@ namespace PizzaBox.Storing.Migrations
                     b.Property<int?>("PizzaID")
                         .HasColumnType("int");
 
-                    b.Property<decimal?>("Price")
+                    b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("ToppingType")

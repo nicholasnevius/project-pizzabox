@@ -24,7 +24,7 @@ namespace PizzaBox.Storing.Repositories
         public List<Domain.Models.Topping> GetList()
         {
             List<Domain.Models.Topping> toppings = new List<Domain.Models.Topping>();
-            context.Toppings.ToList().ForEach(topping => toppings.Add(mapper.Map(topping)));
+            context.Toppings.AsEnumerable().GroupBy(t => t.ToppingType).Select(t => t.First()).ToList().ForEach(topping => toppings.Add(mapper.Map(topping)));
             return toppings;
         }
 

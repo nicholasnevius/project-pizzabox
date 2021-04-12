@@ -21,11 +21,7 @@ namespace PizzaBox.Storing.Mappers
                 default:
                     throw new ArgumentException("SizeMapper encountered an unknown type when mapping from DB Model to Domain Model");
             }
-
-            if (model.Price.HasValue)
-            {
-                size.Price = model.Price.Value;
-            }
+            size.Price = model.Price;
             return size;
         }
 

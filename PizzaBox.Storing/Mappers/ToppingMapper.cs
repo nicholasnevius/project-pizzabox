@@ -24,11 +24,8 @@ namespace PizzaBox.Storing.Mappers
                 default:
                     throw new ArgumentException("ToppingMapper encountered unknown topping type when mapping from DB Model to Domain Model");
             }
-            
-            if (model.Price.HasValue)
-            {
-                topping.Price = model.Price.Value;
-            }
+
+            topping.Price = model.Price;
             return topping;
         }
 

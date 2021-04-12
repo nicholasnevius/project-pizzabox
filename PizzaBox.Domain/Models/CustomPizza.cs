@@ -22,5 +22,10 @@ namespace PizzaBox.Domain.Models
         {
 
         }
+
+        public override APizza Clone()
+        {
+            return new CustomPizza();
+        }
     }
 }

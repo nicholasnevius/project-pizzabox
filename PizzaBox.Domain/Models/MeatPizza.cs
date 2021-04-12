@@ -6,31 +6,30 @@ namespace PizzaBox.Domain.Models
     /// 
     /// </summary>
     public class MeatPizza : APizza
-  {
-
-    public MeatPizza() : base("Meat Pizza")
     {
-    }
 
-    public override void AddToppings()
-    {
-        Toppings.AddRange(new Topping[] { new PepperoniTopping(), new BaconTopping() });
-    }
+        public MeatPizza() : base("Meat Pizza")
+        {
+        }
 
-    public override void AddSize()
-    {
-      if (Size == null)
-      {
-        Size = new MediumSize();
-      }
-    }
+        public override void AddToppings()
+        {
+            Toppings.AddRange(new Topping[] { new PepperoniTopping(), new BaconTopping() });
+        }
 
-    public override void AddCrust()
-    {
-      if (Crust == null)
-      {
-        Crust = new TraditionalCrust();
-      }
+        public override void AddSize()
+        {
+            Size = new MediumSize();
+        }
+
+        public override void AddCrust()
+        {
+            Crust = new TraditionalCrust();
+        }
+
+        public override APizza Clone()
+        {
+            return new MeatPizza();
+        }
     }
-  }
 }

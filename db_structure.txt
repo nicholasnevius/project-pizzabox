@@ -1,44 +1,11 @@
-Stores
-	ID
-	Name
+TODOS:
+	-create custom pizza
+		-limit number of Toppings
+	-limit order size to 50 Pizzas
+	-limit order price to $250
+	-limit Orders based on time
+		-once per 2 hours
+		-once per store per day
+	-get order history
 
-Orders
-	ID
-	StoreID
-	CustomerID
-	TotalPrice
-	TimePlaced
-
-Order_Pizzas
-	OrderID
-	PizzaID
-
-Pizzas
-	ID
-	CrustID
-	SizeID
-	Price
-
-Pizza_Toppings
-	PizzaID
-	ToppingID
-
-Toppings
-	ID
-	Name
-	Price
-	Amount
-
-Crusts
-	ID
-	Name
-	Price
-
-Sizes
-	ID
-	Name
-	Price
-
-Customers
-	ID
-	Name
+	-List store revenue by week or month

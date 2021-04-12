@@ -16,6 +16,7 @@ namespace PizzaBox.Storing.Entities
         public int ID { get; set; }
         [Required]
         public SIZE_TYPE SizeType { get; set; }
-        public decimal? Price { get; set; }
+        [Required]
+        public decimal Price { get; set; }
     }
 }

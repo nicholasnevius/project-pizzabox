@@ -36,11 +36,7 @@ namespace PizzaBox.Storing.Mappers
             List<Domain.Models.Topping> toppings = new List<Domain.Models.Topping>();
             model.Toppings.ForEach(topping => toppings.Add(toppingMapper.Map(topping)));
             pizza.Toppings = toppings;
-            
-            if (model.Price.HasValue)
-            {
-                pizza.Price = model.Price.Value;
-            }
+            //pizza.Price = model.Price;
             return pizza;
         }
 

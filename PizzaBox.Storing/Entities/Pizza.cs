@@ -16,12 +16,13 @@ namespace PizzaBox.Storing.Entities
         public int ID { get; set; }
         [Required]
         public PIZZA_TYPE PizzaType { get; set; }
-        public decimal? Price { get; set; }
         [Required]
         public Crust Crust { get; set; }
         [Required]
         public Size Size { get; set; }
         [Required]
         public List<Topping> Toppings { get; set; }
+        [Required]
+        public decimal Price { get; set; }
     }
 }

@@ -26,7 +26,9 @@ namespace PizzaBox.Storing.Repositories
         public List<Domain.Models.Customer> GetList()
         {
             List<PizzaBox.Domain.Models.Customer> domainCustomers = new List<PizzaBox.Domain.Models.Customer>();
-            context.Customers.ToList().ForEach(customer => domainCustomers.Add(mapper.Map(customer)));
+
+            context.Customers.AsEnumerable().GroupBy(c => c.Name).Select(c => c.First()).ToList().ForEach(c => domainCustomers.Add(mapper.Map(c)));
+            //context.Customers.GroupBy(c => c.Name).Select(c => c.First()).ToList().ForEach(customer => domainCustomers.Add(mapper.Map(customer)));
             return domainCustomers;
         }
 

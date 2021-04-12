@@ -15,6 +15,7 @@ namespace PizzaBox.Storing.Entities
         public int ID { get; set; }
         [Required]
         public TOPPING_TYPE ToppingType { get; set; }
-        public decimal? Price { get; set; }
+        [Required]
+        public decimal Price { get; set; }
     }
 }

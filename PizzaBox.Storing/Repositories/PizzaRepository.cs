@@ -25,7 +25,8 @@ namespace PizzaBox.Storing.Repositories
         public List<APizza> GetList()
         {
             List<APizza> pizzas = new List<APizza>();
-            context.Pizzas.Include(p => p.Crust).Include(p => p.Size).Include(p => p.Toppings).ToList().ForEach(pizza => pizzas.Add(mapper.Map(pizza)));
+            context.Pizzas.Include(p => p.Crust).Include(p => p.Size).Include(p => p.Toppings).AsEnumerable().GroupBy(p => p.PizzaType).Select(p => p.First()).ToList().ForEach(pizza => pizzas.Add(mapper.Map(pizza)));
+            //ontext.Pizzas.Include(p => p.Crust).Include(p => p.Size).Include(p => p.Toppings).ToList().ForEach(pizza => pizzas.Add(mapper.Map(pizza)));
             return pizzas;
         }
 
