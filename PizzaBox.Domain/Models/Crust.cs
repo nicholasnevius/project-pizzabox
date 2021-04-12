@@ -15,5 +15,11 @@ namespace PizzaBox.Domain.Models
         {
             return $"{Name}";
         }
+
+        public override decimal Price { get; set; }
+        protected Crust(decimal priceper)
+        {
+            Price = priceper;
+        }
     }
 }

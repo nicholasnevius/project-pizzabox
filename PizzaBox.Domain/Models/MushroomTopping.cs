@@ -4,11 +4,14 @@ namespace PizzaBox.Domain.Models
     {
         private const decimal PRICE = 0.6m;
         
-        public MushroomTopping(uint amount) : base(amount, PRICE)
+        public MushroomTopping() : base(PRICE)
         {
             Name = "Mushroom";
         }
 
-        public MushroomTopping() : this(1) {} 
+        public MushroomTopping(decimal price) : base(price)
+        {
+            Name = "Mushroom";
+        }
     }
 }

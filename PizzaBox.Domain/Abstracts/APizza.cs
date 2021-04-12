@@ -22,18 +22,26 @@ namespace PizzaBox.Domain.Abstracts
     [XmlIgnore]
     public List<Topping> Toppings { get; set; }
     public string Name { get; set; }
+    private decimal price = 0.0m;
     public override decimal Price
     {
         get
         {
-            decimal Total = 0.0m;
-            Total += Crust.Price;
-            Total += Size.Price;
+            if (price != 0.0m)
+            {
+                return price;
+            }
+            price += Crust.Price;
+            price += Size.Price;
             foreach(Topping topping in Toppings)
             {
-                Total += topping.Price;
+                price += topping.Price;
             }
-            return Total;
+            return price;
+        }
+        set
+        {
+            price = value;
         }
     }
 

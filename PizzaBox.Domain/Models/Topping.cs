@@ -12,25 +12,15 @@ namespace PizzaBox.Domain.Models
   [XmlInclude(typeof(PepperoniTopping))]
   public abstract class Topping : AComponent
   {
-    public override decimal Price
+    public override decimal Price { get; set; }
+    protected Topping(decimal priceper)
     {
-        get
-        {
-            return Amount * PricePer;
-        }
-    }
-
-    protected uint Amount { get; set; }
-    protected decimal PricePer { get; set; }
-    protected Topping(uint amount, decimal priceper)
-    {
-        Amount = amount;
-        PricePer = priceper;
+        Price = priceper;
     }
     
     public override string ToString()
     {
-        return $"{Amount} - {Name}";
+        return $"{Name}";
     }
   }
 }

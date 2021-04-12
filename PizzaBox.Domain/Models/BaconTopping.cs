@@ -4,11 +4,15 @@ namespace PizzaBox.Domain.Models
     {
         private const decimal PRICE = 0.5m;
 
-        public BaconTopping(uint amount) : base(amount, PRICE)
+        public BaconTopping() : base(PRICE)
         {
             Name = "Bacon";
         }
 
-        public BaconTopping() : this(1) {}
+        public BaconTopping(decimal price) : base(price)
+        {
+            Name = "Bacon";
+        }
+
     }
 }

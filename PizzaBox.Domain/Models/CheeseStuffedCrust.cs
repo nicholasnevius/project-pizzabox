@@ -4,17 +4,14 @@ namespace PizzaBox.Domain.Models
     {
         private const decimal PRICE = 1.5m;
 
-        public CheeseStuffedCrust()
+        public CheeseStuffedCrust() : base(PRICE)
         {
             Name = "Cheese Stuffed Crust";
         }
 
-        public override decimal Price
+        public CheeseStuffedCrust(decimal price) : base(price)
         {
-            get
-            {
-                return PRICE;
-            }
+            Name = "Cheese Stuffed Crust";           
         }
     }
 }

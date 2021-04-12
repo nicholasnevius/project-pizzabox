@@ -4,17 +4,14 @@ namespace PizzaBox.Domain.Models
     {
         private const decimal PRICE = 3.0m;
 
-        public SmallSize()
+        public SmallSize() : base(PRICE)
         {
             Name = "Small Size";
         }
 
-        public override decimal Price
+        public SmallSize(decimal price) : base(price)
         {
-            get
-            {
-                return PRICE;
-            }
+            Name = "Small Size"; 
         }
     }
 }

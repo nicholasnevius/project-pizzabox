@@ -14,7 +14,7 @@ namespace PizzaBox.Domain.Models
 
     public override void AddToppings()
     {
-        Toppings.AddRange(new Topping[] { new PepperoniTopping(2), new BaconTopping(2) });
+        Toppings.AddRange(new Topping[] { new PepperoniTopping(), new BaconTopping() });
     }
 
     public override void AddSize()

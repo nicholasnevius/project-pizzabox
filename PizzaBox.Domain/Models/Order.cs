@@ -20,6 +20,10 @@ namespace PizzaBox.Domain.Models
             Pizzas.ForEach(pizza => Total += pizza.Price);
             return Total;
         }
+        set
+        {
+          
+        }
     }
 
     public Order()
