@@ -9,7 +9,7 @@ namespace PizzaBox.Client.States
         public override void Handle(Context context)
         {
             var index = 0;
-            context.Order.Pizzas.ForEach(pizza => Console.WriteLine($"{++index} - {pizza}"));
+            context.Order.Pizzas.ForEach(pizza => Console.WriteLine($"{++index} - {pizza} - {pizza.Price}"));
             var input = 0;
             do
             {

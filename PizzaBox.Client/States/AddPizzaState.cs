@@ -11,7 +11,7 @@ namespace PizzaBox.Client.States
         public override void Handle(Context context)
         {
             var index = 0;
-            _pizzaSingleton.Pizzas.ForEach(pizza => Console.WriteLine($"{++index} - {pizza}"));
+            _pizzaSingleton.Pizzas.ForEach(pizza => Console.WriteLine($"{++index} - {pizza.Name}"));
             var input = 0;
             do
             {
@@ -27,18 +27,9 @@ namespace PizzaBox.Client.States
 
             Domain.Abstracts.APizza pizza = _pizzaSingleton.Pizzas[input - 1].Clone();
             context.Order.Pizzas.Add(pizza);
-            if (pizza is Domain.Models.CustomPizza)
-            {
 
-            }
-            else
-            {
-                context.State = StateSingleton.Instance.GetState<SelectPizzaSizeState>();
-            }
-
-
-
-            //context.State = StateSingleton.Instance.GetState<DisplayOrderState>();
+            context.State = pizza is Domain.Models.CustomPizza ? StateSingleton.Instance.GetState<CreateCustomPizzaState>()
+                                                               : StateSingleton.Instance.GetState<SelectPizzaSizeState>();
         }
     }
 }

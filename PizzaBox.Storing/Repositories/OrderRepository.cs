@@ -26,7 +26,11 @@ namespace PizzaBox.Storing.Repositories
         public List<Domain.Models.Order> GetList()
         {
             List<Domain.Models.Order> orders = new List<Domain.Models.Order>();
-            context.Orders.Include(o => o.Customer).Include(o => o.Pizzas).Include(o => o.Store).ToList().ForEach(order => orders.Add(mapper.Map(order)));
+
+            context.Orders.Include(o => o.Customer).Include(o => o.Store).Include(o => o.Pizzas).ThenInclude(p => p.Toppings).Include(o => o.Pizzas)
+                .ThenInclude(p => p.Size).Include(o => o.Pizzas).ThenInclude(p => p.Crust).ToList().ForEach(order => orders.Add(mapper.Map(order)));
+
+            //context.Orders.Include(o => o.Customer).Include(o => o.Pizzas).Include(o => o.Store).ToList().ForEach(order => orders.Add(mapper.Map(order)));
             return orders;
         }
 

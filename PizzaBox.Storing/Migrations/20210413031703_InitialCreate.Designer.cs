@@ -10,7 +10,7 @@ using PizzaBox.Storing.Entities;
 namespace PizzaBox.Storing.Migrations
 {
     [DbContext(typeof(AnimalsDbContext))]
-    [Migration("20210412185452_InitialCreate")]
+    [Migration("20210413031703_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

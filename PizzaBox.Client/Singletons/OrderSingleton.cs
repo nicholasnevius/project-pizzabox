@@ -21,6 +21,11 @@ namespace PizzaBox.Client.Singletons
             }
         }
 
+        public void PlaceOrder(Order order)
+        {
+            repository.Add(order);
+        }
+
         private OrderSingleton()
         {
             repository = new OrderRepository(DbContextSingleton.Instance.Context);

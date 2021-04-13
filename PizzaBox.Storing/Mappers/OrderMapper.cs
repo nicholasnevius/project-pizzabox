@@ -21,7 +21,7 @@ namespace PizzaBox.Storing.Mappers
 
             order.Price = model.TotalPrice;
             order.Store = storeMapper.Map(model.Store);
-
+            order.TimePlaced = model.TimePlaced;
             return order;
         }
 
@@ -36,7 +36,6 @@ namespace PizzaBox.Storing.Mappers
 
             order.Store = storeMapper.Map(model.Store);
             order.TotalPrice = model.Price;
-
             order.TimePlaced = DateTime.Now;
             return order;
         }

@@ -10,7 +10,7 @@ namespace PizzaBox.Client.States
         {
             var index = 0;
             StoreSingleton.Instance.Stores.ForEach(store => Console.WriteLine($"{++index} - {store}"));
-            context.State = new SelectStoreState();
+            context.State = PizzaBox.Client.Singletons.StateSingleton.Instance.GetState<SelectStoreState>();
         }
     }
 }

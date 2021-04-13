@@ -20,7 +20,7 @@ namespace PizzaBox.Domain.Models
 
         public override void AddToppings()
         {
-
+            Toppings = new System.Collections.Generic.List<Topping>();
         }
 
         public override APizza Clone()

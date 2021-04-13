@@ -49,22 +49,26 @@ namespace PizzaBox.Client
 
             APizza pizza = new CustomPizza();
             pizza.Crust = new DeepDishCrust();
+            pizza.Size = new SmallSize();
+            pizza.Toppings = new List<Topping>();
+            pizza.Toppings.Add(new BaconTopping());
+            pizza.Toppings.Add(new PepperoniTopping());
+
+            order.Pizzas = new List<APizza>()
+            {
+              pizza,
+              new VeganPizza(),
+              new MeatPizza()
+            };
+
+            orderRepository.Add(order);
+
             pizza.Size = new LargeSize();
             pizza.Toppings = new List<Topping>();
             pizza.Toppings.Add(new BaconTopping());
             pizza.Toppings.Add(new OnionTopping());
-
-            order.Pizzas = new List<APizza>()
-            {
-              pizza
-              //new MeatPizza(),
-              //new VeganPizza()
-            };
-
+            order.Store.Name = "Test Store 2";
             orderRepository.Add(order);
-            //orderRepository.Add(order);
-
-
 
 
             /*
@@ -98,7 +102,9 @@ namespace PizzaBox.Client
                 var pizza = dbContext.Pizzas;
                 var pizza2 = dbContext.Pizzas.Include(p => p.Crust).Include(p => p.Toppings).Include(p => p.Size).Select(pizza => pizza.PizzaType).Distinct();
 
-                var orderHistory = dbContext.Orders.Include(o => o.Customer).Include(o => o.Store).Include(o => o.Pizzas).Where(o => o.Customer.Name.Equals("Nick")).ToList();
+                var orderHistory = dbContext.Orders.Include(o => o.Customer).Include(o => o.Store).Include(o => o.Pizzas).ThenInclude(p => p.Toppings).Include(o => o.Pizzas)
+                .ThenInclude(p => p.Size).Include(o => o.Pizzas).ThenInclude(p => p.Crust) 
+                .Where(o => o.Customer.Name.Equals("Nick")).ToList();
 
                 var x = 0;
             }

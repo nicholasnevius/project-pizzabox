@@ -1,8 +1,4 @@
 TODOS:
-	-create custom pizza
-		-limit number of Toppings
-	-limit order size to 50 Pizzas
-	-limit order price to $250
 	-limit Orders based on time
 		-once per 2 hours
 		-once per store per day

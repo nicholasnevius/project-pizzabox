@@ -12,6 +12,8 @@ namespace PizzaBox.Domain.Models
     public Customer Customer { get; set; }
     public List<APizza> Pizzas { get; set; }
 
+    public System.DateTime TimePlaced { get; set; }
+
     public override decimal Price
     {
         get
@@ -26,9 +28,20 @@ namespace PizzaBox.Domain.Models
         }
     }
 
+        public override string ToString()
+        {
+          string result = $"{Customer}" + System.Environment.NewLine + $"{Store}" + System.Environment.NewLine
+                            + $"{Price}" + System.Environment.NewLine + "Pizzas:" + System.Environment.NewLine;
+          Pizzas.ForEach(pizza => result += $"{pizza}" + System.Environment.NewLine);
+          return result;
+        }
+
+    
+
     public Order()
     {
-        Pizzas = new List<APizza>();
+      TimePlaced = new System.DateTime();
+      Pizzas = new List<APizza>();
     }
 
     /// <summary>

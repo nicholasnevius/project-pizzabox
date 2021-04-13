@@ -6,7 +6,9 @@ namespace PizzaBox.Client.States
     {
         public override void Handle(Context context)
         {
-            throw new System.NotImplementedException();
+            context.Order.TimePlaced = System.DateTime.Now;
+            PizzaBox.Client.Singletons.OrderSingleton.Instance.PlaceOrder(context.Order);
+            context.State = PizzaBox.Client.Singletons.StateSingleton.Instance.GetState<InitialState>();
         }
     }
 }

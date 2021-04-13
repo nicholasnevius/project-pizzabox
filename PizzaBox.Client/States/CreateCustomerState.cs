@@ -12,7 +12,9 @@ namespace PizzaBox.Client.States
             Console.WriteLine("Enter customer name");
             var input = Console.ReadLine();
             context.Customer = new Customer(input);
-            context.State = StateSingleton.Instance.GetState<DisplayStoresState>();
+            context.Order.Customer = context.Customer;
+            //context.State = StateSingleton.Instance.GetState<DisplayStoresState>();
+            context.State = StateSingleton.Instance.GetState<CustomerSelectedState>();
         }
     }
 }

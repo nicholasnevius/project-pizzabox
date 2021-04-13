@@ -41,7 +41,7 @@ namespace PizzaBox.Client.States
             } while (input <= 0 || input > _sizeSingleton.Sizes.Count);
             pizza.Size = _sizeSingleton.Sizes[input - 1];
 
-            context.State = PizzaBox.Client.Singletons.StateSingleton.Instance.GetState<DisplayOrderState>();
+            context.State = PizzaBox.Client.Singletons.StateSingleton.Instance.GetState<CheckOrderTotalState>();
         }
     }
 }

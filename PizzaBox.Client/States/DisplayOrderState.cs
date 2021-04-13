@@ -11,7 +11,7 @@ namespace PizzaBox.Client.States
             var index = 0;
             Console.WriteLine("Your order is: ");
             context.Order.Pizzas.ForEach(pizza =>  
-                    Console.WriteLine($"{++index} - {pizza} - {pizza.Price}"));
+                    Console.WriteLine($"{++index} - {pizza.Price} - {pizza}"));
             Console.WriteLine($"Total - {context.Order.Price}");
 
             context.State = StateSingleton.Instance.GetState<EditOrderState>();

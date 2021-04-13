@@ -22,6 +22,7 @@ namespace PizzaBox.Client.States
             } while (input <= 0 || input > StoreSingleton.Instance.Stores.Count);
 
             context.Store = StoreSingleton.Instance.Stores[input - 1];
+            context.Order.Store = context.Store;
 
             context.State = StateSingleton.Instance.GetState<EditOrderState>();
         }

@@ -49,7 +49,7 @@ namespace PizzaBox.Domain.Abstracts
         {
             if (this is CustomPizza)
             {
-                string output = $"Crust: {Crust}" + Environment.NewLine + $"Size: {Size}" + Environment.NewLine + "Toppings: ";
+                string output = "Custom Pizza" + Environment.NewLine + $"\tCrust: {Crust}" + Environment.NewLine + $"\tSize: {Size}" + Environment.NewLine + "\tToppings: ";
                 Toppings.ForEach(topping => output += topping.ToString() + ", ");
                 output = output.Substring(0, output.LastIndexOf(", "));
                 return output;
