@@ -12,8 +12,9 @@ namespace PizzaBox.Client.States
 
         private static ImmutableArray<KeyValuePair<string, AState>> OPTIONS = ImmutableArray.Create(new KeyValuePair<string, AState>[] 
         { 
-            new KeyValuePair<string, AState>("Create Order", StateSingleton.Instance.GetState<DisplayStoresState>()),
-            new KeyValuePair<string, AState>("View Order History", StateSingleton.Instance.GetState<DisplayOrderHistoryState>())
+            new KeyValuePair<string, AState>("View Order History", StateSingleton.Instance.GetState<DisplayOrderHistoryState>()),
+            new KeyValuePair<string, AState>("Create Order", StateSingleton.Instance.GetState<DisplayStoresState>())
+
         });
 
         public override void Handle(Context context)
@@ -37,15 +38,25 @@ namespace PizzaBox.Client.States
                 }
             }
 
-            var index = canPlaceOrder ? 0
-                                      : 1;
-            for(int i = index; index < OPTIONS.Length; i < OPTIONS.Length)
+            var index = 0;
+            Console.WriteLine($"{++index} - {OPTIONS[0].Key}");
+            if (canPlaceOrder)
             {
-                
+                Console.WriteLine($"{++index} - {OPTIONS[1].Key}");
             }
-            Console.WriteLine($"{++index} - {OPTIONS[i].Key}");
+             var input = 0;
+            do
+            {
+                try
+                {
+                    input = int.Parse(Console.ReadLine());
+                } catch (Exception)
+                {
 
-        
+                }
+            } while (input <= 0 || input > index);
+
+            context.State = OPTIONS[input - 1].Value;
         }
     }
 }

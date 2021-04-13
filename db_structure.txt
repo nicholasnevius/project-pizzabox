@@ -1,7 +1,5 @@
 TODOS:
 	-limit Orders based on time
-		-once per 2 hours
 		-once per store per day
-	-get order history
 
 	-List store revenue by week or month

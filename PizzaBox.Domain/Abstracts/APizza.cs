@@ -49,13 +49,13 @@ namespace PizzaBox.Domain.Abstracts
         {
             if (this is CustomPizza)
             {
-                string output = "Custom Pizza" + Environment.NewLine + $"\tCrust: {Crust}" + Environment.NewLine + $"\tSize: {Size}" + Environment.NewLine + "\tToppings: ";
+                string output = $"Custom Pizza - {Price}" + Environment.NewLine + $"\tCrust: {Crust}" + Environment.NewLine + $"\tSize: {Size}" + Environment.NewLine + "\tToppings: ";
                 Toppings.ForEach(topping => output += topping.ToString() + ", ");
                 output = output.Substring(0, output.LastIndexOf(", "));
                 return output;
             }
 
-            return Name;
+            return $"{Name} - {Price}";
         }
 
         protected APizza(String name)

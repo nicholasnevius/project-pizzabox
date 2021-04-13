@@ -7,7 +7,7 @@ namespace PizzaBox.Storing.Entities
     {
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseSqlServer("Server=tcp:<server>.database.windows.net,1433;Initial Catalog=<Db>;User ID=<user>;Password=<pass>");
+            options.UseSqlServer("Server=tcp:<server>.database.windows.net,1433;Initial Catalog=<DB>;User ID=<user>;Password=<Password>");
         }
 
         public DbSet<Crust> Crusts { get; set; }

@@ -20,7 +20,8 @@ namespace PizzaBox.Client.States
         {
             var index = 0;
             // we can always add a pizza to the list but we cannot do the rest of the options without at least 1 pizza existing first
-            if (context.Order.Pizzas.Count < 50)
+            bool printAddPizza = context.Order.Pizzas.Count < 50;
+            if (printAddPizza)
             {
                 Console.WriteLine($"{++index} - {OPTIONS[0].Key}");
             }
@@ -43,7 +44,10 @@ namespace PizzaBox.Client.States
                 }
             } while (input <= 0 || input > index);
 
-            context.State = OPTIONS[input - 1].Value;
+            context.State = OPTIONS[     
+                                        printAddPizza ? input - 1
+                                                      : input
+                                    ].Value;
         }
     }
 }

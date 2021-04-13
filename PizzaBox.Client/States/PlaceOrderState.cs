@@ -8,6 +8,7 @@ namespace PizzaBox.Client.States
         {
             context.Order.TimePlaced = System.DateTime.Now;
             PizzaBox.Client.Singletons.OrderSingleton.Instance.PlaceOrder(context.Order);
+            PizzaBox.Client.Singletons.OrderSingleton.Instance.Orders.Add(context.Order);
             context.State = PizzaBox.Client.Singletons.StateSingleton.Instance.GetState<InitialState>();
         }
     }
