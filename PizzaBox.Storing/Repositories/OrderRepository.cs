@@ -25,13 +25,9 @@ namespace PizzaBox.Storing.Repositories
 
         public List<Domain.Models.Order> GetList()
         {
-            List<Domain.Models.Order> orders = new List<Domain.Models.Order>();
-
-            context.Orders.Include(o => o.Customer).Include(o => o.Store).Include(o => o.Pizzas).ThenInclude(p => p.Toppings).Include(o => o.Pizzas)
-                .ThenInclude(p => p.Size).Include(o => o.Pizzas).ThenInclude(p => p.Crust).ToList().ForEach(order => orders.Add(mapper.Map(order)));
-
-            //context.Orders.Include(o => o.Customer).Include(o => o.Pizzas).Include(o => o.Store).ToList().ForEach(order => orders.Add(mapper.Map(order)));
-            return orders;
+            return context.Orders.Include(o => o.Customer).Include(o => o.Store).Include(o => o.Pizzas)
+                    .ThenInclude(p => p.Toppings).Include(o => o.Pizzas).ThenInclude(p => p.Size)
+                    .Include(o => o.Pizzas).ThenInclude(p => p.Crust).Select(mapper.Map).ToList();
         }
 
         public void Remove(Domain.Models.Order t)
@@ -41,7 +37,7 @@ namespace PizzaBox.Storing.Repositories
             if (order is not null)
             {
                 context.Remove(order);
-                context.SaveChanges();                
+                context.SaveChanges();
             }
         }
 
@@ -57,7 +53,7 @@ namespace PizzaBox.Storing.Repositories
                 order.Store = updatedOrder.Store;
                 order.TimePlaced = updatedOrder.TimePlaced;
                 order.TotalPrice = updatedOrder.TotalPrice;
-                context.SaveChanges();                
+                context.SaveChanges();
             }
         }
     }

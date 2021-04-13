@@ -24,12 +24,13 @@ namespace PizzaBox.Storing.Repositories
 
         public List<AStore> GetList()
         {
-            List<AStore> AStores = new List<AStore>();
+            return context.Stores.AsEnumerable().GroupBy(s => s.Name).Select(s => s.First()).Select(mapper.Map).ToList();
+            //List<AStore> AStores = new List<AStore>();
 
-            context.Stores.AsEnumerable().GroupBy(s => s.Name).Select(s => s.First()).ToList().ForEach(store => AStores.Add(mapper.Map(store)));
+            //context.Stores.AsEnumerable().GroupBy(s => s.Name).Select(s => s.First()).ToList().ForEach(store => AStores.Add(mapper.Map(store)));
 
             //context.Stores.ToList().ForEach(store => AStores.Add(mapper.Map(store)));
-            return AStores;
+            //return AStores;
         }
 
         public void Remove(AStore t)

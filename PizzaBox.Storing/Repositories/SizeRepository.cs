@@ -24,9 +24,11 @@ namespace PizzaBox.Storing.Repositories
 
         public List<Domain.Models.Size> GetList()
         {
-            List<Domain.Models.Size> sizes = new List<Domain.Models.Size>();
-            context.Sizes.AsEnumerable().GroupBy(s => s.SizeType).Select(s => s.First()).ToList().ForEach(size => sizes.Add(mapper.Map(size)));
-            return sizes;
+            return context.Sizes.AsEnumerable().GroupBy(s => s.SizeType).Select(s => s.First()).Select(mapper.Map).ToList();
+
+            //List<Domain.Models.Size> sizes = new List<Domain.Models.Size>();
+            //context.Sizes.AsEnumerable().GroupBy(s => s.SizeType).Select(s => s.First()).ToList().ForEach(size => sizes.Add(mapper.Map(size)));
+            //return sizes;
         }
 
         public void Remove(Domain.Models.Size t)

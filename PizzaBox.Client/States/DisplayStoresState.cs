@@ -10,14 +10,31 @@ namespace PizzaBox.Client.States
     {
         public override void Handle(Context context)
         {
-            // has a list of IGrouping
-            // where the first instance in each is the newest order
+            var latestOrder = PizzaBox.Client.Singletons.OrderSingleton.Instance.Orders
+                                .Where(order => order.Customer.Name.Equals(context.Customer.Name))
+                                .OrderByDescending(o => o.TimePlaced).ToList().FirstOrDefault();
+            if (latestOrder is not null)
+            {
+                var timeDifference = System.DateTime.Now - latestOrder.TimePlaced;
+                if (timeDifference.TotalHours < 2)
+                {
+                    // can't place order since it has been less than 2 hours
+                    Console.WriteLine("It has been less than 2 hours since you placed an order. You cannot place another at this time.");
+                    context.State = StateSingleton.Instance.GetState<CustomerSelectedState>();
+                    return;
+                }
+            }
+
+
+
             List<Domain.Abstracts.AStore> validStores = new List<Domain.Abstracts.AStore>();
             var orderHistory = PizzaBox.Client.Singletons.OrderSingleton.Instance.Orders
                                 .Where(order => order.Customer.Name.Equals(context.Customer.Name))
                                 .OrderByDescending(o => o.TimePlaced)
                                 .GroupBy(o => o.Store.Name).Select(s => s.First()).ToList();
-            foreach(Domain.Abstracts.AStore store in PizzaBox.Client.Singletons.StoreSingleton.Instance.Stores)
+
+
+            foreach (Domain.Abstracts.AStore store in PizzaBox.Client.Singletons.StoreSingleton.Instance.Stores)
             {
                 var lastOrderFromStore = orderHistory.Find(order => order.Store.Name.Equals(store.Name));
                 if (lastOrderFromStore is not null)
@@ -29,7 +46,8 @@ namespace PizzaBox.Client.States
                     {
                         validStores.Add(store);
                     }
-                } else
+                }
+                else
                 {
                     // customer has never placed an order from the current store
                     // store must be valid then
@@ -42,21 +60,23 @@ namespace PizzaBox.Client.States
             if (validStores.Count == 0)
             {
                 Console.WriteLine("There are no stores available for you to order from");
-                context.State = Singletons.StateSingleton.Instance.GetState<InitialState>();
+                context.State = Singletons.StateSingleton.Instance.GetState<CustomerSelectedState>();
                 return;
             }
             Console.WriteLine("Select a store");
             int input = 0;
             do
             {
-                try {
+                try
+                {
                     input = int.Parse(Console.ReadLine());
-                } catch (Exception)
+                }
+                catch (Exception)
                 {
                     // We don't really need to handle this, just let them try again
                 }
             } while (input <= 0 || input > validStores.Count);
-            
+
             context.Store = validStores[input - 1];
             context.Order.Store = context.Store;
 

@@ -66,6 +66,9 @@ namespace PizzaBox.Client.Contexts
             }
         }
 
+        public System.DateTime FirstDay { get; set; }
+        public System.DateTime LastDay { get; set; }
+
         public void Request()
         {
             _state.Handle(this);

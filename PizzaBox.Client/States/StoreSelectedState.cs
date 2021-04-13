@@ -7,12 +7,12 @@ using System.Collections.Generic;
 
 namespace PizzaBox.Client.States
 {
-    public class CustomerSelectedState : AState
+    public class StoreSelectedState : AState
     {
         private static ImmutableArray<KeyValuePair<string, AState>> OPTIONS = ImmutableArray.Create(new KeyValuePair<string, AState>[]
         {
-            new KeyValuePair<string, AState>("View Order History", StateSingleton.Instance.GetState<DisplayOrderHistoryState>()),
-            new KeyValuePair<string, AState>("Create Order", StateSingleton.Instance.GetState<DisplayStoresState>()),
+            new KeyValuePair<string, AState>("View Order History", StateSingleton.Instance.GetState<DisplayStoreOrderHistoryState>()),
+            new KeyValuePair<string, AState>("View Sales Report", StateSingleton.Instance.GetState<StoreSalesReportSelectedState>()),
             new KeyValuePair<string, AState>("Exit", StateSingleton.Instance.GetState<ExitState>())
         });
 

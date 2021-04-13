@@ -44,6 +44,10 @@ namespace PizzaBox.Client.Singletons
             _states.Add(typeof(CreateCustomPizzaState), new CreateCustomPizzaState());
             _states.Add(typeof(CustomerSelectedState), new CustomerSelectedState());
             _states.Add(typeof(DisplayOrderHistoryState), new DisplayOrderHistoryState());
+            _states.Add(typeof(StoreSelectedState), new StoreSelectedState());
+            _states.Add(typeof(DisplayStoreOrderHistoryState), new DisplayStoreOrderHistoryState());
+            _states.Add(typeof(StoreSalesReportSelectedState), new StoreSalesReportSelectedState());
+            _states.Add(typeof(StoreSalesReportSelectTimeState), new StoreSalesReportSelectTimeState());
         }
     }
 }
